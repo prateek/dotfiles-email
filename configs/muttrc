@@ -1,0 +1,457 @@
+
+# Change the following line to a different editor you prefer.
+set editor = "vim +8"
+
+# == Paths
+set folder            = ~/.mail/
+set alias_file        = ~/.mutt/aliases
+set mailcap_path      = ~/.mutt/mailcap
+set tmpdir            = ~/.mutt/tmpdir
+set signature         = ~/.mutt/signature
+
+# == Identity
+set realname = "Matthew Lyon"
+set from="Matthew Lyon <matthew@lyonheart.us>"
+alternates "(sanehatter@gmail.com)|(matt.*@flowerpowered.com)|(matt.*@postsomnia.com)|(matt@invokearts.com)"
+set use_from
+set sendmail="msmtp -a lyonheart"
+set record="+Lyonheart/sent"
+
+# == Basics
+set beep              = no          # shut up
+set wait_key          = no          # shut up
+set mbox_type         = Maildir
+set timeout           = 3
+set mail_check        = 0
+unset move                          # gmail handles this for us
+set delete                          # shut up
+unset confirmappend                 # shut up
+set quit                            # shut up
+unset mark_old                      # don't need mutt's "old" noise
+set pipe_decode                     # strip headers and eval mimes when piping
+set thorough_search                 # strip headers and eval mimes for searching
+
+# == Status Bar
+set status_chars  = " *%A"
+# set status_format = "Folder: %f    %r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? %> %?p?( %p postponed )?"
+
+# == Notmuch
+set virtual_spoolfile = yes
+set nm_hidden_tags=
+set nm_query_type=threads
+virtual-mailboxes \
+  "inbox"     "notmuch://?query=tag:inbox" \
+  "flagged"   "notmuch://?query=tag:flagged" \
+  "sent"      "notmuch://?query=tag:sent" \
+  "-trash"    "notmuch://?query=tag:trash" \
+  "-spam"     "notmuch://?query=tag:spam and not tag:inbox"
+source ~/.mutt/mailboxes
+
+# == Sidebar
+set sidebar_visible = no
+set sidebar_width = 35
+set sidebar_delim = ' '
+
+# == Header Display
+ignore *
+unignore  From To Cc Date Subject
+hdr_order from: to: cc: date: subject:
+
+# == Index
+set date_format = "%e %b %y %H:%M"
+set index_format="%[%e %b %y %R] %Z %?M?%2M&  ? %-25.25F %g %s"
+set sort = threads
+set sort_aux = 'reverse-last-date-received'
+set uncollapse_jump
+set sort_re
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+set auto_tag
+folder-hook . "exec collapse-all"
+
+# == Pager
+set pager_index_lines = 10
+set pager_context = 5
+set pager_stop
+set menu_scroll
+set tilde
+set markers=no                          # disable '+' at beginning of wrapped lines
+set smart_wrap=yes
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+auto_view text/html
+
+# == Compose
+set envelope_from                       #
+set sig_dashes                          # dashes before sig
+set edit_headers                        # show headers when composing
+# set autoedit                            # skip straight to compose
+set fast_reply                          # skip to compose when replying
+unset askcc                             # don't ask for cc:
+unset mime_forward                      # inline message in forward
+set mime_forward
+set mime_forward_rest=yes               # forward attachments from message
+set forward_format = "Fwd: %s"          # format of subject when forwarding
+set forward_decode                      # decode when forwarding
+set attribution = "On %d, %n wrote:"    # quote header
+set reply_to                            # reply using 'Reply To:' header
+set reverse_name                        # reply using account received
+set include                             # include message in replies
+set forward_quote                       # include message in forwards
+set text_flowed=yes
+set sendmail_wait = 0
+
+set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
+
+# == PGP
+set pgp_good_sign = "^gpg: Good signature from"
+set pgp_sign_as = 3351BD75
+set my_hdr = "X-PGP-Key: http://lyonheart.us/matthew_lyon_gpg.txt"
+
+set pgp_timeout=1800
+set pgp_use_gpg_agent
+set pgp_verify_sig
+set pgp_autosign
+set pgp_replysign
+set pgp_replyencrypt
+set pgp_replysignencrypted
+set pgp_decode_command="gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f"
+set pgp_verify_command="gpg --no-verbose --batch --output - --verify %s %f"
+set pgp_decrypt_command="gpg --passphrase-fd 0 --no-verbose --batch --output - %f"
+set pgp_sign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
+set pgp_clearsign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
+set pgp_encrypt_only_command="pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to 0xC9C40C31 -- -r %r -- %f"
+set pgp_encrypt_sign_command="pgpewrap gpg --passphrase-fd 0 --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to 0xC9C40C31 -- -r %r -- %f"
+set pgp_import_command="gpg --no-verbose --import -v %f"
+set pgp_export_command="gpg --no-verbose --export --armor %r"
+set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
+set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r" 
+set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r" 
+
+# ==== General ===========================
+  # m               compose mail
+  # q               quit
+  # C-l             redraw screen
+# ==== Navigation ========================
+  # b, C-b          previous screen
+  # <space>, C-f    next-screen
+  # gg              top
+  # G               bottom
+  # j               next entry
+  # k               previous entry
+  # l               limit messages
+  # L               clear limit
+  # n               next search result
+  # N               previous search result
+  # p               recall drafts
+  # x               browse vfolders
+  # X               vfolder from query
+  # /               find
+  # [               tag pattern
+  # ]               untag pattern
+  # >               sort
+  # <               sort-reverse
+  # \               search toggle
+  # <return>        view item
+  # <right>         open folder (sidebar), close sidebar
+  # <down>          next folder (sidebar)
+  # <up>            previous folder (sidebar)
+  # <left>          toggle sidebar visibility
+# ==== Messages ==========================
+  # B               bounce message
+  # e               archive message
+  # f               forward message
+  # h               view headers
+  # M               modify notmuch tags
+  # r               reply
+  # R               reply all
+  # s               flag message (star)
+  # S               skip quoted material
+  # t               tag
+  # T               tag thread - index
+  # T               toggle quoted - pager
+  # u               get urls
+  # v               view attachments
+  # z               collapse thread
+  # Z               collapse all
+  # !               send to spam
+  # #               send to trash
+  # +               entire-thread (notmuch)
+  # |               pipe message
+
+# === All Bindings, alphabetically ===============
+source ~/.mutt/reset_bindings.muttrc
+# query                     A   query-append
+bind index,pager,attach     b   previous-page
+bind index,pager,attach     B   bounce-message
+bind generic,index,pager    \Cb previous-page
+bind generic,index,pager    \CF next-page
+# browser                   c   change-dir
+# pgp,smime                 c   verify-key
+# . index,pager             e   edit
+macro index,pager           e   "<modify-labels-then-hide>-inbox -trash -spam\n<sync-mailbox>" "archive message (-inbox -trash -spam)"
+macro index,pager           E   "<modify-labels-then-hide>+inbox -trash -spam\n<sync-mailbox>" "inbox message (+inbox -trash -spam)"
+# . index,pager,attach      \cE edit-type
+# index,pager,attach        f   forward-message
+# index,pager,attach        \CF forget-passphrase
+# - index,pager,attach      g   group-reply
+bind generic,index          gg  first-entry
+bind pager                  gg  top
+bind generic                G   last-entry
+bind index                  G   last-entry
+bind pager                  G   bottom
+# index,pager,attach,compose h  display-toggle-weed
+# generic                   j   next-entry
+bind index,pager            j   next-entry
+# generic                   k   previous-entry
+bind index,pager            k   previous-entry
+# index                     l   limit
+macro index                 L   "<limit>all<enter>" "clear limit filter"
+# generic,pager             \CL refresh
+# index,pager,query         m   mail
+bind index,pager            M   modify-labels
+# generic                   n   search-next
+# - index,pager             N   mark-as-new
+bind index,pager            N   search-opposite
+# . browser                 N   select-new
+bind index                  p   recall-message
+# generic                   q   quit
+# pager                     q   exit
+# index,query               Q   query
+# index,pager               r   reply
+# index,pager               R   recall-message # drafts?
+bind pager                  R   group-reply
+# . index,pager             s   save-message
+bind index,pager            s   flag-message
+# attach                    s   save-entry
+# pager                     S   skip-quoted
+# generic                   t   tag-entry
+# pager                     t   tag-message
+# - index                   T   tag-pattern
+bind index                  T   tag-thread
+# pager                     T   toggle-quoted
+# attach                    T   view-text
+macro pager                 u   "|urlview<enter>" "call urlview"
+# index,pager               v   view-attachments
+# attach                    v   collapse-parts
+# bind index                x   change-vfolder
+macro index,pager           x   "<change-vfolder>?" "Change VFolder"
+bind index                  X   vfolder-from-query
+bind index                  z   collapse-thread
+bind index                  Z   collapse-all
+# . index                   +   entire-thread
+macro index,pager           !   "<modify-labels-then-hide>-inbox +spam\n<sync-mailbox>" "flag as spam"
+# index,pager               @   display-address
+# - index,pager             #   break-thread
+macro index,pager           \#  "<modify-labels-then-hide>-inbox +trash\n<sync-mailbox>" "send to trash"
+# index                     $   sync-mailbox
+bind index                  [   tag-pattern
+bind index                  ]   untag-pattern
+# generic,pager             :   enter-command
+bind index                  >   sort-mailbox
+bind browser                >   sort
+bind index,browser          <   sort-reverse
+# generic,pager             /   search
+# generic,pager             \e/ search-reverse
+# pager                     \\  search-toggle
+# index,pager               |   pipe-message
+# attach                    |   pipe-entry
+# - index             <Space>   display-message
+# pager               <Space>   next-screen
+# browser             <Space>   view-file
+bind generic,index    <Space>   next-page
+macro index,pager     <right>   "<sidebar-open><enter-command>toggle sidebar_visible<enter>" "open sidebar selection"
+bind index,pager       <down>   sidebar-next
+bind index,pager         <up>   sidebar-prev
+macro index,pager      <left>   '<enter-command>toggle sidebar_visible<enter>' "toggle sidebar"
+# generic            <Return>   display-message
+# browser               <tab>   toggle-mailboxes
+
+# ==== Compose ===============
+  # a               attach file
+  # A               attach message
+  # b               edit BCC
+  # c               edit cc
+  # d               edit attachment description
+  # D               detach file
+  # C-d             toggle attachment disposition
+  # e               edit message
+  # E               edit headers
+  # C-e             edit encoding
+  # f               edit from
+  # G               get-attachment
+  # m               edit mime
+  # p               pgp menu
+  # P               postpone message
+  # r               edit reply to
+  # s               edit subject
+  # S               smime menu
+  # t               edit to
+  # y               send message
+  # Y               send without GPG
+  # |               pipe message
+  # ==========================
+    # compose a attach-file
+    # compose A attach-message
+    # compose b edit-bcc
+    # compose c edit-cc
+    # compose C copy-file
+    bind compose C noop
+    # compose d edit-description # attachment
+    # compose D detach-file
+    # compose \CD toggle-disposition
+    # compose e edit-message
+    # compose E edit-headers
+    # compose \CE edit-encoding
+    # - compose f edit-fcc # save message locally to a file
+    # compose \ef edit-from
+    bind compose f edit-from
+    # . compose F filter-entry # through shell
+    bind compose F noop
+    # compose \CF forget-passphrase
+    # compose G get-attachment
+    # compose i ispell
+    bind compose i noop
+    # compose \ek attach-key
+    bind compose \ek noop
+    # compose l print-entry
+    bind compose l noop
+    # compose m edit-mime
+    # compose M mix
+    bind compose M noop
+    # compose n new-mime
+    bind compose n noop
+    # compose p pgp-menu
+    # compose P postpone-message
+    # compose r edit-reply-to
+    # browser r rename-mailbox # imap
+    # compose R rename-file
+    bind compose R noop
+    # compose s edit-subject
+    # compose S smime-menu
+    # compose t edit-to
+    # compose \CT edit-type
+    # compose u toggle-unlink # to delete after sending
+    # compose U update-encoding
+    # compose \CXe edit-file
+    bind compose \CXe noop
+    # compose y send-message
+    # compose | pipe-entry
+    # compose <return> view-attach
+    # compose w write-fcc # write message to folder
+    bind compose w noop
+    # attach,compose <Return> view-attach
+    bind attach <return> view-mailcap
+    macro compose Y pfy "send without GPG"
+
+# ==== Line Editor ===========
+    # editor \CA bol # beginning of line
+    # editor \CB backward-char
+    # editor \EB backward-word
+    # editor \CC capitalize-word
+    bind editor \CC noop
+    # editor \ed kill-eow
+    # editor \CD delete-char
+    # editor \CE eol
+    # editor \CF forward-char
+    # editor \ef forward-word
+    # editor \CK kill-eol
+    # editor \el downcase-word
+    bind editor \el noop
+    # editor \CT complete-query
+    bind editor \CT complete
+    # editor \cU kill-line
+    # editor \eu upcase-word
+    bind editor \eu noop
+    # editor \CV quote-char
+    # editor \CW kill-word
+    # editor <space> buffy-cycle
+    bind editor <space> noop
+    # editor <tab> complete
+    bind editor <Tab> complete-query
+
+
+# browser @ display-filename
+# pgp,smime % view-name
+
+
+# === Editing
+
+# tags
+tag-transforms \
+  "inbox"           "✤" \
+  "unread"          "►" \
+  "flagged"         "★ " \
+  "signed"          "✔ " \
+  "replied"         "↻ " \
+  "sent"            "⇥" \
+  "spam"            "💩" \
+  "trash"           "☓" \
+  "attachment"      "⨮" \
+  "lyonheart"       "£" \
+  "sanehatter"      "ß" \
+  "old_address"     "❦"
+
+# mutt color scheme
+
+# index
+# === Defaults.. All Messages
+color	normal          default     default
+color   index_tags      yellow      default
+color   index_date      blue        default
+color   index_author    green       default     ~A
+color   index_subject   green       default     ~A
+color   index_collapsed brightwhite default
+# === Deleted
+color   index           brightred  default      ~D
+color   index           brightred  default      "~Y \W?trash\W?"
+color   index_author    brightred  default      "~Y \W?trash\W?"
+color   index_subject   brightred  default      "~Y \W?trash\W?"
+# === Unread
+color   index_author    brightwhite default     ~U
+color   index_subject   white       default     ~U
+color   index_subject   white       default     "~v~(~N)"
+color   index_subject   yellow      default     "(~U~d >1w)"
+# === Flagged
+color   index_subject   red         default     ~F
+# === Large
+color   index_subject   magenta     default     "~z >100K"
+# === Tagged
+color   index           black       green       ~T
+color   index_author    black       green       ~T
+color   index_subject   black       green       ~T
+
+# viewer
+color	hdrdefault	white       default                 # default headers
+color   header      blue        default         "^From:"
+color   header      blue        default         "^Subject:"
+
+color	quoted      cyan        default                 # quote colours
+color   quoted1     blue        default
+color   quoted2     green       default
+color   quoted3     yellow      default
+color   quoted4     red         default
+
+color	body		yellow      default       (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
+color	body		green       default       [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
+
+color	signature	blue        default                 # sigs
+color   search      red         black                   # highlight results
+
+color	indicator	black       brightblue              # currently highlighted message
+color	error		red         default                 # error messages
+color	status		black       cyan                    # status line
+color	tree		green       default                 # thread tree
+color   tilde       black       default                 # blank line padding
+
+
+
+color	body	    green default           "^gpg: Good signature from"
+color	body	    brightred default		"^gpg: Bad signature from"
+color	body	    brightred default		"^gpg: BAD signature from"
+color	body	    brightred default		"^gpg: Note: This key has expired!"
+color	body	    brightyellow default	"^gpg: WARNING: This key is not certified with a trusted signature!"
+color	body	    brightyellow default	"^gpg:          There is no indication that the signature belongs to the owner."
+color	body	    brightyellow default	"^gpg: can't handle these multiple signatures"
+color	body	    brightyellow default	"^gpg: signature verification suppressed"
+color	body	    brightyellow default	"^gpg: invalid node with packet of type"
+

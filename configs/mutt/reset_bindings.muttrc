@@ -1,0 +1,97 @@
+bind index,pager,query      a   noop # create-alias
+bind index,pager            c   noop # change-folder
+bind browser                C   noop # create-mailbox # imap only
+bind index,pager            C   noop # copy-message
+bind index,pager            \ec noop # change-folder-readonly
+bind index,pager            \eC noop # decode-copy
+bind index,pager,browser    d   noop # delete-message
+bind alias,postpone         d   noop # delete-entry
+bind browser                d   noop # delete-mailbox # imap only
+bind index,pager            D   noop # delete-pattern
+bind index,pager            \CD noop # delete-thread
+bind index,pager            \ed noop # delete-subthread
+bind index,pager,attach     \ee noop # resend-message
+bind index,pager            F   noop # flag-message
+bind index                  G   noop # fetch-mail ... POP only
+bind generic                H   noop # top-page
+bind pager                  i   noop # exit
+bind index,pager            j   noop # next-undeleted
+bind index,pager            J   noop # next-entry
+bind index,pager            k   noop # previous-undeleted
+bind index,pager            \ek noop # mail-key
+bind index,pager            K   noop # previous-entry
+bind index,pager,attach     \CK noop # extract-keys
+bind generic                L   noop # bottom-page
+bind generic                L   noop
+bind index,pager,attach     L   noop # list-reply
+bind pager,attach           L   noop
+bind index                  \el noop # show-limit
+bind browser                m   noop # enter-mask
+bind attach,query           m   noop # view-mailcap
+bind generic                M   noop # middple-page
+bind browser                N   noop
+bind index,pager            \CN noop # next-thread
+bind index,pager            \en noop # next-subthread
+bind index,pager,browser    o   noop # sort, sort-mailbox
+bind index,pager,browser    O   noop # sort-reverse
+bind index,pager,attach     p   noop # print-message,print-entry
+bind index,pager            \ep noop # previous-subthread
+bind index,pager            P   noop # parent-message
+bind index,pager            \CP noop # previous-thread
+bind index,pager,attach     \eP noop # check-traditional-pgp
+bind index                  Q   noop # query
+bind pager                  Q   noop # quit
+bind index,pager            \er noop # read-subthread
+bind index,pager            \CR noop # read-thread
+bind browser                s   noop # subscribe # imap
+bind index,pager            \es noop # decode-save
+bind browser                T   noop # toggle-subscribed
+bind index                  \Ct noop # untag-pattern
+bind index                  \et noop # tag-thread
+bind index,pager            u   noop # undelete-message
+bind alias,attach,postpone  u   noop # undelete-entry
+bind browser                u   noop # unsubscribe # imap
+bind index                  U   noop # undelete-pattern
+bind index,pager            \CU noop # undelete-thread
+bind index,pager            \eu noop # undelete-subthread
+bind index                  \ev noop # collapse-thread
+bind index                  \eV noop # collapse-all
+bind index,pager            V   noop # show-version
+bind index,pager            w   noop # set-flag
+bind index,pager            W   noop # clear-flag
+bind index                  x   noop # exit
+bind index,pager            \eX noop # vfolder-from-query
+bind index                  y   noop # change-folder
+bind generic                z   noop # next-page
+bind generic                Z   noop # previous-page
+bind index,pager            \`  noop # modify-labels
+bind generic,pager          1   noop
+bind generic,pager          2   noop
+bind generic,pager          3   noop
+bind generic,pager          4   noop
+bind generic,pager          5   noop
+bind generic,pager          6   noop
+bind generic,pager          7   noop
+bind generic,pager          8   noop
+bind generic,pager          9   noop
+bind index,pager            -   noop # previous-page
+bind generic                =   noop # first-entry
+bind generic                !   noop # shell-escape
+bind index                  %   noop # toggle-write
+bind pager                  \^  noop # top
+bind index,pager            \&  noop # link-threads
+bind generic                *   noop # last-entry
+bind generic                ]   noop # half-down
+bind generic                [   noop # half-up
+bind generic                \;  noop # tag-prefix
+bind index,pager,browser    .   noop # buffy-list
+bind generic                >   noop # next-line
+bind generic                <   noop # previous-line
+bind index,pager  <Backspace>   noop
+bind index,pager       <Home>   noop
+bind index,pager        <End>   noop
+bind index,pager   <PageDown>   noop
+bind index,pager     <PageUp>   noop
+bind pager           <Return>   noop # next-line
+bind generic            <tab>   noop # next-new-then-unread
+bind generic,index    \e<Tab>   noop # previous-new-then-unread
