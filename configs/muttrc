@@ -266,7 +266,7 @@ bind index,browser          <   sort-reverse
 # pager               <Space>   next-screen
 # browser             <Space>   view-file
 bind generic,index    <Space>   next-page
-# generic            <Return>   display-message
+bind index           <Return>   display-message
 # browser               <tab>   toggle-mailboxes
 
 # ==== Compose ===============
