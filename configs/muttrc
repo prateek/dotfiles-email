@@ -25,7 +25,7 @@ set mail_check        = 0
 unset move                          # gmail handles this for us
 set delete                          # shut up
 unset confirmappend                 # shut up
-set quit                            # shut up
+set quit=ask-yes                    # ok maybe don't shut up
 unset mark_old                      # don't need mutt's "old" noise
 set pipe_decode                     # strip headers and eval mimes when piping
 set thorough_search                 # strip headers and eval mimes for searching
