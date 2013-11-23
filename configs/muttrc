@@ -5,7 +5,6 @@ set editor = "vim +8"
 # == Paths
 set folder            = ~/.mail/
 set alias_file        = ~/.mutt/aliases
-set mailcap_path      = ~/.mutt/mailcap
 set tmpdir            = ~/.mutt/tmpdir
 set signature         = ~/.mutt/signature
 
