@@ -424,6 +424,7 @@ color   index_subject   black       green       ~T
 color	hdrdefault	white       default                 # default headers
 color   header      blue        default         "^From:"
 color   header      blue        default         "^Subject:"
+color   header      cyan        default         "^To:"
 
 color	quoted      cyan        default                 # quote colours
 color   quoted1     blue        default
@@ -431,7 +432,7 @@ color   quoted2     green       default
 color   quoted3     yellow      default
 color   quoted4     red         default
 
-color	body		yellow      default       (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
+color	body		yellow      default       (https?|ftp)://[\-\.\+,/%~_:?&=\#a-zA-Z0-9]+
 color	body		green       default       [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
 
 color	signature	blue        default                 # sigs
