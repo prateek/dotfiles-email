@@ -1,15 +1,6 @@
-# Images
-image/jpg; ~/.mutt/view_attachment.sh %s jpg
-image/jpeg; ~/.mutt/view_attachment.sh %s jpg
-image/pjpeg; ~/.mutt/view_attachment.sh %s jpg
-image/png; ~/.mutt/view_attachment.sh %s png
-image/gif; ~/.mutt/view_attachment.sh %s gif
+image/*; open %s;
+application/pdf; open %s;
 
-# PDFs
-application/pdf; ~/.mutt/view_attachment.sh %s pdf
+text/html; pandoc --columns 120 -f html -t markdown ; copiousoutput ; compose=vim %s; description=HTML Text; test=type pandoc >/dev/null
 
-# HTML
-text/html; ~/.mutt/view_attachment.sh %s html
-
-# Unidentified files
-application/octet-stream; ~/.mutt/view_attachment.sh %s "-"
+application/octet-stream; open %s

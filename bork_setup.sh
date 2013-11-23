@@ -35,6 +35,15 @@ pkg lynx
 pkg gnupg
 pkg gpgme
 
+pkg haskell-platform
+if did_install; then
+  # TODO make a cabal declaration for bork (prolly also gem and npm)
+  PATH="$HOME/.cabal/bin:$PATH"
+  cabal update
+  cabal install pandoc
+  echo "please remember to add $HOME/.cabal/bin to your path"
+fi
+
 cd $HOME
 symlink 'configs/*' --tmpl=".\$f"
 permissions .msmtprc 600
