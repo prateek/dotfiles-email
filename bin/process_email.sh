@@ -66,9 +66,9 @@ nm+="-new -- tag:new"
 echo "$nm" | notmuch tag --batch
 
 mutt="virtual-mailboxes"
-tags=$(echo "$dirs" | sed -E 's|(sent\|spam\|trash\|flagged\|drafts)||')
+tags=$(echo "$dirs" | sed -E 's|(sent\|spam\|trash\|flagged\|drafts\|inbox)||')
 for tag in $tags; do
-  mutt+=" \":$tag\" \"notmuch://?query=tag:$tag\""
+  mutt+=" \"@$tag\" \"notmuch://?query=tag:$tag\""
 done
 mutt+="\n"
 echo "$mutt" > ~/.mutt/mailboxes
