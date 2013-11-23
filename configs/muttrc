@@ -52,8 +52,8 @@ virtual-mailboxes \
   "attachments"   "notmuch://?query=tag:attachment" \
 
 # == Sidebar
-set sidebar_visible = no
-set sidebar_width = 35
+set sidebar_visible = yes
+set sidebar_width = 24
 set sidebar_delim = ' '
 
 # == Header Display
@@ -157,10 +157,9 @@ set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secr
   # <               sort-reverse
   # \               search toggle
   # <return>        view item
-  # <right>         open folder (sidebar), close sidebar
-  # <down>          next folder (sidebar)
-  # <up>            previous folder (sidebar)
-  # <left>          toggle sidebar visibility
+  # C-j             sidebar next
+  # C-k             sidebar previous
+  # C-l             sidebar open
 # ==== Messages ==========================
   # B               bounce message
   # e               archive message
@@ -207,8 +206,10 @@ bind pager                  G   bottom
 # index,pager,attach,compose h  display-toggle-weed
 # generic                   j   next-entry
 bind index,pager            j   next-entry
+bind index,pager            \Cj sidebar-next
 # generic                   k   previous-entry
 bind index,pager            k   previous-entry
+bind index,pager            \Ck sidebar-prev
 # index                     l   limit
 macro index                 L   "<limit>all<enter>" "clear limit filter"
 # generic,pager             \CL refresh
@@ -218,6 +219,7 @@ bind index,pager            M   modify-labels
 # - index,pager             N   mark-as-new
 bind index,pager            N   search-opposite
 # . browser                 N   select-new
+bind index,pager            \Cl sidebar-open
 bind index                  p   recall-message
 # generic                   q   quit
 # pager                     q   exit
@@ -264,10 +266,6 @@ bind index,browser          <   sort-reverse
 # pager               <Space>   next-screen
 # browser             <Space>   view-file
 bind generic,index    <Space>   next-page
-macro index,pager     <right>   "<sidebar-open><enter-command>toggle sidebar_visible<enter>" "open sidebar selection"
-bind index,pager       <down>   sidebar-next
-bind index,pager         <up>   sidebar-prev
-macro index,pager      <left>   '<enter-command>toggle sidebar_visible<enter>' "toggle sidebar"
 # generic            <Return>   display-message
 # browser               <tab>   toggle-mailboxes
 
