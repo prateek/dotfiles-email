@@ -54,13 +54,14 @@ set sidebar_delim = ' '
 # == Header Display
 ignore *
 unignore  From To Cc Date Subject
-hdr_order from: to: cc: date: subject:
+unhdr_order *
+hdr_order date: to: cc: from: subject:
 
 # == Index
 set date_format = "%e %b %y %H:%M"
 set index_format="%[%e %b %y %R] %Z %?M?%2M&  ? %-25.25F %g %s"
 set sort = threads
-set sort_aux = 'reverse-last-date-received'
+set sort_aux = 'last-date-received'
 set uncollapse_jump
 set sort_re
 set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
