@@ -93,5 +93,9 @@ bind index,pager        <End>   noop
 bind index,pager   <PageDown>   noop
 bind index,pager     <PageUp>   noop
 bind pager           <Return>   noop # next-line
-bind generic            <tab>   noop # next-new-then-unread
+bind generic            <Tab>   noop # next-new-then-unread
 bind generic,index    \e<Tab>   noop # previous-new-then-unread
+bind generic           <Down>   noop
+bind generic             <Up>   noop
+bind generic          <Right>   noop
+bind generic           <Left>   noop
