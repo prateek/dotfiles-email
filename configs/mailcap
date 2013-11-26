@@ -1,6 +1,8 @@
-image/*; open %s;
-application/pdf; open %s;
+image/*; open -g %s;
+application/pdf; open -g %s;
 
-text/html; pandoc --columns 120 -f html -t markdown ; copiousoutput ; compose=vim %s; description=HTML Text; test=type pandoc >/dev/null
+# text/html; pandoc --columns 90 -f html -t markdown ; copiousoutput ; compose=vim %s; description=HTML Text; test=type pandoc >/dev/null
+text/html; lynx -dump -width=90 %s ; nametemplate = %s.html; copiousoutput; description=HTML Text;
+text/html; open -g %s ; nametemplate = %s.html
 
-application/octet-stream; open %s
+application/octet-stream; open -g %s
