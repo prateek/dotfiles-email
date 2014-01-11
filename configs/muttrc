@@ -393,10 +393,10 @@ tag-transforms \
 # index
 # === Defaults.. All Messages
 color	normal          default     default
-color   index_tags      yellow      default
-color   index_date      blue        default
-color   index_author    green       default     ~A
-color   index_subject   green       default     ~A
+color   index_tags      brightyellow default
+color   index_date      brightblue  default
+color   index_author    white       default     ~A
+color   index_subject   white       default     ~A
 color   index_collapsed brightwhite default
 # === Deleted
 color   index           brightred  default      ~D
@@ -405,13 +405,13 @@ color   index_author    brightred  default      "~Y \W?trash\W?"
 color   index_subject   brightred  default      "~Y \W?trash\W?"
 # === Unread
 color   index_author    brightwhite default     ~U
-color   index_subject   white       default     ~U
-color   index_subject   white       default     "~v~(~N)"
-color   index_subject   yellow      default     "(~U~d >1w)"
+color   index_subject   brightwhite default     ~U
+color   index_subject   brightwhite default     "~v~(~N)"
+color   index_subject   brightwhite default     "(~U~d >1w)"
 # === Flagged
 color   index_subject   red         default     ~F
 # === Large
-color   index_subject   magenta     default     "~z >100K"
+color   index_subject   magenta   default "~z >100K"
 # === Tagged
 color   index           black       green       ~T
 color   index_author    black       green       ~T
@@ -437,7 +437,7 @@ color   search      red         black                   # highlight results
 
 color	indicator	black       brightblue              # currently highlighted message
 color	error		red         default                 # error messages
-color	status		black       cyan                    # status line
+color	status		black       blue                    # status line
 color	tree		green       default                 # thread tree
 color   tilde       black       default                 # blank line padding
 
