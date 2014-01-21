@@ -64,7 +64,7 @@ hdr_order date: to: cc: from: subject:
 
 # == Index
 set date_format = "%e %b %y %H:%M"
-set index_format="%[%e %b %y %R] %Z %?M?%2M&  ? %-25.25F %g %s"
+set index_format="%[%e %b %y %R] %Z %?M?%2M&  ? %-10.10g %-30.30F %s"
 set sort = threads
 set sort_aux = 'last-date-received'
 set uncollapse_jump
