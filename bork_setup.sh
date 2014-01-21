@@ -44,8 +44,9 @@ if did_install; then
   echo "please remember to add $HOME/.cabal/bin to your path"
 fi
 
+configs=$PWD/configs
 cd $HOME
-symlink 'configs/*' --tmpl=".\$f"
+symlink "$configs/*" --tmpl=".\$f"
 permissions .msmtprc 600
 directories .mail .mutt/cache .mutt/tmpdir .offlineimap
 
