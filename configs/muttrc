@@ -34,25 +34,6 @@ set thorough_search                 # strip headers and eval mimes for searching
 set status_chars  = " *%A"
 set status_format = "%f   %m messages%?n? new: %n?%?u? unread: %u?%?t? tagged: %t?%?p? drafts: %p?%> %s %S"
 
-# == Notmuch
-set virtual_spoolfile = yes
-set nm_hidden_tags=
-set nm_query_type=threads
-virtual-mailboxes \
-  "inbox"         "notmuch://?query=tag:inbox" \
-  "flagged"       "notmuch://?query=tag:flagged and not tag:trash" \
-  "unread to me"  "notmuch://?query=tag:unread and (to:sanehatter@gmail.com or to:matthew@lyonheart.us)" \
-  "sent"          "notmuch://?query=tag:sent"
-source ~/.mutt/mailboxes
-virtual-mailboxes \
-  "-trash"        "notmuch://?query=tag:trash" \
-  "-spam"         "notmuch://?query=tag:spam and not tag:inbox" \
-  "1w"            "notmuch://?query=date:1w.. and not tag:spam and not tag:trash" \
-  "6w"            "notmuch://?query=date:6w.. and not tag:spam and not tag:trash" \
-  "attachments"   "notmuch://?query=tag:attachment"
-set vfolder_format = "%-20.20f %5N %5n"
-set sort_browser=unsorted
-
 # == Sidebar
 set sidebar_visible = no
 
@@ -107,48 +88,7 @@ set sendmail_wait = 0
 
 set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
 
-# == PGP
-set pgp_good_sign = "^gpg: Good signature from"
-set pgp_sign_as = 3351BD75
-set my_hdr = "X-PGP-Key: http://lyonheart.us/matthew_lyon_gpg.txt"
-
-set pgp_timeout=1800
-set pgp_use_gpg_agent
-set pgp_verify_sig
-set pgp_autosign
-set pgp_replysign
-set pgp_replyencrypt
-set pgp_replysignencrypted
-set pgp_decode_command="gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f"
-set pgp_verify_command="gpg --no-verbose --batch --output - --verify %s %f"
-set pgp_decrypt_command="gpg --passphrase-fd 0 --no-verbose --batch --output - %f"
-set pgp_sign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
-set pgp_clearsign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
-set pgp_encrypt_only_command="pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to 0xC9C40C31 -- -r %r -- %f"
-set pgp_encrypt_sign_command="pgpewrap gpg --passphrase-fd 0 --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to 0xC9C40C31 -- -r %r -- %f"
-set pgp_import_command="gpg --no-verbose --import -v %f"
-set pgp_export_command="gpg --no-verbose --export --armor %r"
-set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
-set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r" 
-set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r" 
-
-
-# === Editing
-
-# tags
-tag-transforms \
-  "inbox"           "✤" \
-  "unread"          "►" \
-  "flagged"         "★ " \
-  "signed"          "✔ " \
-  "replied"         "↻ " \
-  "sent"            "⇥" \
-  "spam"            "💩" \
-  "trash"           "☓" \
-  "attachment"      "⨮" \
-  "lyonheart"       "£" \
-  "sanehatter"      "ß" \
-  "old_address"     "❦"
-
+source $HOME/.mutt/gpg.muttrc
+source $HOME/.mutt/notmuch.muttrc
 source $HOME/.mutt/mappings.muttrc
 source $HOME/.mutt/colors.muttrc

@@ -1,0 +1,32 @@
+set virtual_spoolfile = yes
+set nm_hidden_tags=
+set nm_query_type=threads
+virtual-mailboxes \
+  "inbox"         "notmuch://?query=tag:inbox" \
+  "flagged"       "notmuch://?query=tag:flagged and not tag:trash" \
+  "unread to me"  "notmuch://?query=tag:unread and (to:sanehatter@gmail.com or to:matthew@lyonheart.us)" \
+  "sent"          "notmuch://?query=tag:sent"
+source ~/.mutt/mailboxes
+virtual-mailboxes \
+  "-trash"        "notmuch://?query=tag:trash" \
+  "-spam"         "notmuch://?query=tag:spam and not tag:inbox" \
+  "1w"            "notmuch://?query=date:1w.. and not tag:spam and not tag:trash" \
+  "6w"            "notmuch://?query=date:6w.. and not tag:spam and not tag:trash" \
+  "attachments"   "notmuch://?query=tag:attachment"
+set vfolder_format = "%-20.20f %5N %5n"
+set sort_browser=unsorted
+
+tag-transforms \
+  "inbox"           "✤" \
+  "unread"          "►" \
+  "flagged"         "★ " \
+  "signed"          "✔ " \
+  "replied"         "↻ " \
+  "sent"            "⇥" \
+  "spam"            "💩" \
+  "trash"           "☓" \
+  "attachment"      "⨮" \
+  "lyonheart"       "£" \
+  "sanehatter"      "ß" \
+  "old_address"     "❦"
+
