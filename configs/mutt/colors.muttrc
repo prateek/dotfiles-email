@@ -1,31 +1,29 @@
 # === Defaults.. All Messages
 color	normal          default     default
-color   index_tags      brightyellow default
-color   index_date      brightblue  default
-color   index_author    white       default     ~A
-color   index_subject   white       default     ~A
-color   index_collapsed brightwhite default
+color   index           default     default     ~A
+color   index_author    blue        default     ~A
+color   index_subject   blue        default     ~A
 # === Deleted
-color   index           brightred  default      ~D
-color   index           brightred  default      "~Y \W?trash\W?"
-color   index_author    brightred  default      "~Y \W?trash\W?"
-color   index_subject   brightred  default      "~Y \W?trash\W?"
+color   index           black       red         ~D
+color   index           black       red         "~Y \W?trash\W?"
+color   index_author    black       red         "~Y \W?trash\W?"
+color   index_subject   black       red         "~Y \W?trash\W?"
 # === Unread
-color   index_author    brightwhite default     ~U
-color   index_subject   brightwhite default     ~U
-color   index_subject   brightwhite default     "~v~(~N)"
-color   index_subject   brightwhite default     "(~U~d >1w)"
+color   index_author    brightblue  default     ~U
+color   index_subject   brightblue  default     ~U
+# color   index_subject   brightwhite default     "~v~(~N)"
+# color   index_subject   brightwhite default     "(~U~d >1w)"
 # === Flagged
 color   index_subject   red         default     ~F
 # === Large
-color   index_subject   magenta   default "~z >100K"
+color   index_subject   magenta     default "~z >100K"
 # === Tagged
-color   index           black       green       ~T
-color   index_author    black       green       ~T
-color   index_subject   black       green       ~T
+color   index           brightwhite red         ~T
+color   index_author    brightwhite red         ~T
+color   index_subject   brightwhite red         ~T
 
 # viewer
-color	hdrdefault	white       default                 # default headers
+color	hdrdefault	magenta     default                 # default headers
 color   header      blue        default         "^From:"
 color   header      blue        default         "^Subject:"
 color   header      cyan        default         "^To:"
@@ -33,22 +31,20 @@ color   header      cyan        default         "^To:"
 color	quoted      cyan        default                 # quote colours
 color   quoted1     blue        default
 color   quoted2     green       default
-color   quoted3     yellow      default
+color   quoted3     magenta     default
 color   quoted4     red         default
 
-color	body		yellow      default       (https?|ftp)://[\-\.\+,/%~_:?&=\#a-zA-Z0-9]+
+color	body		magenta     default       (https?|ftp)://[\-\.\+,/%~_:?&=\#a-zA-Z0-9]+
 color	body		green       default       [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
 
 color	signature	blue        default                 # sigs
 color   search      red         black                   # highlight results
 
-color	indicator	black       brightblue              # currently highlighted message
+color	indicator	brightwhite color12                 # currently highlighted message
 color	error		red         default                 # error messages
-color	status		black       blue                    # status line
+color	status		brightwhite color8                  # status line
 color	tree		green       default                 # thread tree
 color   tilde       black       default                 # blank line padding
-
-
 
 color	body	    green default           "^gpg: Good signature from"
 color	body	    brightred default		"^gpg: Bad signature from"
