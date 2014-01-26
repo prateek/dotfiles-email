@@ -45,10 +45,11 @@ hdr_order date: to: cc: from: subject:
 
 # == Index
 set date_format = "%e %b %y %H:%M"
-set index_format="%[%e %b %y %R] %Z %?M?%2M&  ? %-10.10g %-30.30F %s"
+set index_format="%[%e %b %y %R] %Z %10g %?M?%2M&  ? %-30.30F %s"
 set sort = threads
-set sort_aux = 'last-date-received'
+set sort_aux = last-date-received
 set uncollapse_jump
+set collapse_unread=no
 set sort_re
 set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 set auto_tag
