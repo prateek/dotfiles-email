@@ -33,6 +33,16 @@ for tag in $tags_to_rectify; do
       move_to "folder:$account and not tag:$tag and folder:$tag" "$(maildir_for $account)/archive/cur"
     done
   fi
+  emails_to_archive=$(notmuch count not tag:$tag and folder:$tag and folder:archive)
+  if [[ $emails_to_archive > 0 ]]; then
+    echo "archiving $emails_to_archive emails from $tag"
+    for account in $accounts; do
+      result=$(notmuch search --output=files "folder:$account and not tag:$tag and folder:$tag")
+      for email in $result; do
+        rm $email
+      done
+    done
+  fi
 done
 
 offlineimap
