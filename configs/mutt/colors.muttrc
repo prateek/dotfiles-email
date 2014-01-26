@@ -1,26 +1,33 @@
+# designed to work well in light or dark mode.
+#
+# This version requires mutt-kz: https://github.com/karelzak/mutt-kz
+#
+# You may source this into your mutt config like so:
+#
+#     source path/to/mutt-patched-pencilcolors.muttrc
+#
 # === Defaults.. All Messages
 color	normal          default     default
 color   index           default     default     ~A
-color   index_author    blue        default     ~A
-color   index_subject   blue        default     ~A
-# === Deleted
-color   index           black       red         ~D
-color   index           black       red         "~Y \W?trash\W?"
-color   index_author    black       red         "~Y \W?trash\W?"
-color   index_subject   black       red         "~Y \W?trash\W?"
 # === Unread
-color   index_author    brightblue  default     ~U
-color   index_subject   brightblue  default     ~U
-# color   index_subject   brightwhite default     "~v~(~N)"
-# color   index_subject   brightwhite default     "(~U~d >1w)"
+color   index_author    blue        default     ~U
+color   index_subject   blue        default     ~U
+color   index_subject   green       default     ~v~(~N)
 # === Flagged
 color   index_subject   red         default     ~F
 # === Large
-color   index_subject   magenta     default "~z >100K"
+color   index_subject   magenta     default     "~z >100K"
 # === Tagged
 color   index           brightwhite red         ~T
 color   index_author    brightwhite red         ~T
 color   index_subject   brightwhite red         ~T
+# === Deleted
+color   index           black       red         ~D
+color   index_author    black       red         ~D
+color   index_subject   black       red         ~D
+color   index           black       red         "~Y \W?trash\W?"
+color   index_author    black       red         "~Y \W?trash\W?"
+color   index_subject   black       red         "~Y \W?trash\W?"
 
 # viewer
 color	hdrdefault	magenta     default                 # default headers
