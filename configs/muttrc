@@ -1,5 +1,3 @@
-
-# Change the following line to a different editor you prefer.
 set editor = "vim +8 -S $HOME/.vim/vimstar.vim"
 
 # == Paths
