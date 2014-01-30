@@ -84,9 +84,10 @@ bind index                  p   recall-message
 # generic                   q   quit
 # pager                     q   exit
 # index,query               Q   query
-# index,pager               r   reply
-# index,pager               R   recall-message # drafts?
-bind pager                  R   group-reply
+# . index,pager             r   reply
+bind pager,index            r   group-reply
+# . index,pager             R   recall-message # drafts?
+bind pager,index            R   reply
 # . index,pager             s   save-message
 bind index,pager            s   flag-message
 # attach                    s   save-entry
