@@ -9,6 +9,7 @@
 # === Defaults.. All Messages
 color	normal          default     default
 color   index           default     default     ~A
+color   index_collapsed brightred   default
 # === Unread
 color   index_author    blue        default     ~U
 color   index_subject   blue        default     ~U
@@ -25,9 +26,6 @@ color   index_subject   brightwhite red         ~T
 color   index           black       red         ~D
 color   index_author    black       red         ~D
 color   index_subject   black       red         ~D
-color   index           black       red         "~Y \W?trash\W?"
-color   index_author    black       red         "~Y \W?trash\W?"
-color   index_subject   black       red         "~Y \W?trash\W?"
 
 # viewer
 color	hdrdefault	magenta     default                 # default headers

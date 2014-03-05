@@ -1,12 +1,12 @@
 set pgp_good_sign = "^gpg: Good signature from"
 set pgp_sign_as = 3351BD75
-set my_hdr = "X-PGP-Key: http://lyonheart.us/matthew_lyon_gpg.txt"
+# set my_hdr = "X-PGP-Key: http://lyonheart.us/matthew_lyon_gpg.txt"
 
 set pgp_timeout=1800
 set pgp_use_gpg_agent
 set pgp_verify_sig
-set pgp_autosign
-set pgp_replysign
+# set pgp_autosign
+# set pgp_replysign
 set pgp_replyencrypt
 set pgp_replysignencrypted
 set pgp_decode_command="gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f"

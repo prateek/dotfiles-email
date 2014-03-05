@@ -205,7 +205,7 @@ bind index           <Return>   display-message
     bind compose w noop
     # attach,compose <Return> view-attach
     bind attach <return> view-mailcap
-    macro compose Y pfy "send without GPG"
+    # macro compose Y pfy "send without GPG"
 
 # ==== Line Editor ===========
     # editor \CA bol # beginning of line
